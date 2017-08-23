@@ -5,12 +5,17 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/segmentio/redis-go"
+	"redis-go"
 )
 
 func main() {
+
+	fmt.Println(context.Background())
+
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
+
+	redis.DefaultClient = &redis.Client{Addr: "192.168.0.107:6379"}
 
 	// Use the default client which is configured to connect to the redis server
 	// running at localhost:6379.
